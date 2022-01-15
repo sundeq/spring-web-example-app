@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { node { label 'kubernetesWorkerAgent2' } }
     environment {
         DOCKER_IMAGE_NAME = "micsnbricks/cool-spring-app"
     }
