@@ -46,6 +46,7 @@ pipeline {
                 sshagent(['k8s_master_ssh_key']) {
                     sh 'ssh -o StrictHostKeyChecking=no cloud_user@34.203.194.184 date'
                     sh 'scp spring-web-app-kube.yml cloud_user@34.203.194.184:'
+                    sh 'ssh -o StrictHostKeyChecking=no cloud_user@34.203.194.184 kubectl apply -f spring-web-app-kube.yml'
                 }
             }
         }
