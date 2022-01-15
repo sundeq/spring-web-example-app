@@ -28,6 +28,7 @@ pipeline {
                 branch 'main'
             }
             steps {
+                echo "user: $USER"
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
                         app.push("${env.BUILD_NUMBER}")
