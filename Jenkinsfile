@@ -18,7 +18,6 @@ pipeline {
                 branch 'main'
             }
             steps {
-                echo "user: $USER"
                 script {
                     app = docker.build(DOCKER_IMAGE_NAME)
                 }
