@@ -36,7 +36,7 @@ pipeline {
                 milestone(1)
                 kubernetesDeploy(
                     kubeconfigId: 'kubeconfig',
-                    configs: 'train-schedule-kube.yml',
+                    configs: 'spring-web-app-kube.yml',
                     enableConfigSubstitution: true
                 )
             }
