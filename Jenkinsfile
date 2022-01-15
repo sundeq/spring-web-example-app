@@ -2,15 +2,16 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Build jar') {
             steps {
-                echo 'Building..'
+                echo 'Building...'
                 sh './gradlew clean build --no-daemon' 
             }
         }
-        stage('Test') {
+        stage('Build docker image') {
             steps {
-                echo 'Testing..'
+                echo 'Building docker image...'
+                sh 'docker build -t micsnbricks/cool-spring-app'
             }
         }
         stage('Deploy') {
