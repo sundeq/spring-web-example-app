@@ -43,8 +43,8 @@ pipeline {
             steps {
                 input 'Deploy to Production?'
                 milestone(1)
-                withKubeConfig([credentialsId: 'kubeconfig']) {
-                    sh 'kubectl get pods'
+                sshagent(['k8s_master_ssh_key']) {
+                    sh 'ssh -o StrictHostKeyChecking=no cloud_user@34.203.194.184 date'
                 }
             }
         }
