@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    environment {
+        DOCKER_IMAGE_NAME = "micsnbricks/cool-spring-app"
+    }
     stages {
         stage('Build jar') {
             steps {
@@ -10,8 +12,12 @@ pipeline {
         }
         stage('Build docker image') {
             steps {
-                echo 'Building docker image...'
-                sh 'docker build -t micsnbricks/cool-spring-app'
+                script {
+                    app = docker.build(DOCKER_IMAGE_NAME)
+                    app.inside {
+                        sh 'echo Hello, World!'
+                    }
+                }
             }
         }
         stage('Deploy') {
