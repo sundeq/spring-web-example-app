@@ -43,11 +43,9 @@ pipeline {
             steps {
                 input 'Deploy to Production?'
                 milestone(1)
-                kubernetesDeploy(
-                    kubeconfigId: 'kubeconfig',
-                    configs: 'spring-web-app-kube.yml',
-                    enableConfigSubstitution: true
-                )
+                withKubeConfig([credentialsId: 'kubeconfig']) {
+                    sh 'kubectl get pods'
+                }
             }
         }
     }
